@@ -1,0 +1,66 @@
+---
+title: "Advent of Code day 1"
+date: 2022-12-02
+output: md_document
+subtitle: 
+tags: advent_of_code, rstats
+---
+
+Advent of Code day 1
+================
+
+## Part 1
+
+Read in our puzzle input:
+
+
+```{r}
+
+day <- 1
+
+vec <- here::here(
+  "2022", "input",
+  paste0("day_", stringr::str_pad(day, 2, "left", "0"))
+  ) |>
+  readLines()
+
+vec <- as.integer(vec)
+head(vec)
+```
+
+
+```{r}
+
+breaks <- which(is.na(vec))
+length(breaks)
+head(breaks)
+
+pull_sum <- function(elem, vec) {
+  sum(vec[1:elem], na.rm = TRUE)
+}
+
+cumsums <- vapply(breaks, pull_sum, 1L, vec = vec)
+any(is.na(cumsums))
+length(cumsums)
+head(cumsums)
+
+pull_diff <- function(x, vec) {
+  vec[x] - ifelse(x > 1, vec[x-1], 0L)
+}
+
+calories_list <- vapply(seq_along(cumsums), pull_diff, 1L, vec = cumsums)
+
+head(calories_list)
+length(calories_list)
+max(calories_list)
+
+
+```
+
+# Part 2
+
+```{r}
+
+sum(tail(sort(calories_list), 3))
+
+```
