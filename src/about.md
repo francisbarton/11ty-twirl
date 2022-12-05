@@ -3,4 +3,4 @@ layout: default
 title: This is me.
 ---
 
-She/her. A software person. Singapore.
+Internet connoisseur. #RStats developer. Stroud, England.
