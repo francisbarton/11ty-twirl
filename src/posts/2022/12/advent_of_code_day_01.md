@@ -19,10 +19,6 @@ Read in our puzzle input:
       readLines()
 
     vec <- as.integer(input)
-    head(vec)
-
-    ## [1] 22243 11899    NA  1696  2595  5331
-
     breaks <- which(is.na(vec))
 
     pull_diff <- function(x) {
@@ -32,21 +28,8 @@ Read in our puzzle input:
     }
 
     calories_list <- vapply(seq_along(breaks), pull_diff, 1L)
-
-    head(calories_list)
-
-    ## [1] 34142 54868 28046 64877 39885 31499
-
-    length(calories_list)
-
-    ## [1] 254
-
-    max(calories_list) # 75501
-
-    ## [1] 75501
+    max(calories_list)
 
 # Part 2
 
-    sum(tail(sort(calories_list), 3)) # 215594
-
-    ## [1] 215594
+    sum(tail(sort(calories_list), 3))
